@@ -6,18 +6,18 @@ class Solution(object):
         :type numRows: int
         :rtype: str
         """
-        outStr = [''] * numRows
-        if numRows == 1:
+        L = [''] * numRows
+        if numRows == 1 or numRows >= len(s):
             return s
-        a = 0
-        x = 1
-        for S in s:
-            if a < 1:
-                x = 1
-            elif a > numRows - 2:
-                x = -1
-            outStr[a] += S
-            a += x
-        return ''.join(outStr)
+        index, step = 0, 1
+        for x in s:
+            if index == 0:
+                step = 1
+            elif index == numRows - 1:
+                step = -1
+            L[index] += x
+            index += step
+        return ''.join(L)
 
-print Solution().convert('abcd', 1)
+
+print Solution().convert('abcde', 4)
