@@ -9,11 +9,10 @@ class Solution(object):
         outStr = [''] * numRows
         a = 0
         x = 1
-        for i, S in enumerate(s):
-            i %= ((numRows - 1) * 2)
-            if i < 1:
+        for S in s:
+            if a < 1:
                 x = 1
-            if i > numRows - 2:
+            elif a > numRows - 2:
                 x = -1
             outStr[a] += S
             a += x
