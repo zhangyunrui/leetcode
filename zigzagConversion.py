@@ -7,6 +7,8 @@ class Solution(object):
         :rtype: str
         """
         outStr = [''] * numRows
+        if numRows == 1:
+            return s
         a = 0
         x = 1
         for S in s:
@@ -18,4 +20,4 @@ class Solution(object):
             a += x
         return ''.join(outStr)
 
-print Solution().convert('123456789', 5)
+print Solution().convert('abcd', 1)
