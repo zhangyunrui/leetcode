@@ -1,30 +1,52 @@
-# The isBadVersion API is already defined for you.
-# @param version, an integer
-# @return a bool
-# def isBadVersion(version):
+import copy
+import operator
+
 
 class Solution(object):
-    def firstBadVersion(self, n):
+    def singleNumber(self, nums):
         """
-        :type n: int
+        :type nums: List[int]
         :rtype: int
         """
-        i = 1
-        j = n
-        while i < j:
-            k = (i + j) / 2
-            if isBadVersion(k):
-                j = k
-            else:
-                i = k + 1
-        return i
 
-    # def firstBadVersion(self, n):
-    #     return bisect.bisect(type('', (), {'__getitem__': lambda self, i: isBadVersion(i)})(), False, 0, n)
+        # for i, num in enumerate(nums):
+        #     _nums = copy.deepcopy(nums)
+        #     _nums.pop(i)
+        #     try:
+        #         _nums.index(num)
+        #     except ValueError:
+        #         return num
+
+        # for i in list(set(nums)):
+        #     try:
+        #         nums.pop(nums.index(i))
+        #         nums.pop(nums.index(i))
+        #     except ValueError:
+        #         return i
+
+        return reduce(lambda x, y: x ^ y, nums)
+
+    # def singleNumber1(self, nums):
+    #     dic = {}
+    #     for num in nums:
+    #         dic[num] = dic.get(num, 0)+1
+    #     for key, val in dic.items():
+    #         if val == 1:
+    #             return key
     #
-    # def firstBadVersion(self, n):
-    #     class Wrap:
-    #         def __getitem__(self, i):
-    #             return isBadVersion(i)
+    # def singleNumber2(self, nums):
+    #     res = 0
+    #     for num in nums:
+    #         res ^= num
+    #     return res
     #
-    #     return bisect.bisect(Wrap(), False, 0, n)
+    # def singleNumber3(self, nums):
+    #     return 2*sum(set(nums))-sum(nums)
+    #
+    # def singleNumber4(self, nums):
+    #     return reduce(lambda x, y: x ^ y, nums)
+    #
+    # def singleNumber(self, nums):
+    #     return reduce(operator.xor, nums)
+
+print Solution().singleNumber([1, 0, 1])
